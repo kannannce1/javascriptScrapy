@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+
+<meta charset="UTF-8">
+<meta name="robots" content="noindex">
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
+</head>
+<body>
+<div  id="newslist">
+  
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src='http://lovasoa.github.io/tidy-html5/tidy.js'></script>
+
+ <script id="rendered-js">
+  var newsUrls =['https://tamil.oneindia.com/rss/tamil-news-fb.xml',
+                'https://tamil.oneindia.com/rss/tamil-jobs-fb.xml',
+                'https://tamil.filmibeat.com/rss/filmibeat-tamil-fb.xml',
+                'http://feeds.feedburner.com/dinamalar/latest_news.xml',
+                'http://feeds.feedburner.com/dinamalar/',
+                'https://trendsintamilnadu.blogspot.com/feeds/posts/default?alt=rss',
+                'https://trends.google.com/trends/hottrends/atom/feed?pn=p3', 
+                'http://www.dinakaran.com/rss_districts.asp?id=30&cat=504',
+                'https://tamil.goodreturns.in/rss/goodreturns-fb.xml',
+              	'http://rss.dinamalar.com/?cat=business1',
+                'http://tamil.thehindu.com/business/?service=rss',
+                'http://www.thehindu.com/news/national/tamil-nadu/?service=rss',
+                'https://economictimes.indiatimes.com/rssfeedsdefault.cms',
+                'http://economictimes.indiatimes.com/small-biz/startups',
+                'http://agrifarmideas.blogspot.com/feeds/posts/default',
+                'http://rss.vikatan.com/feeds/nanayam.rss',
+                'http://rss.vikatan.com/feeds/news.rss',
+                'http://rss.vikatan.com/feeds/pasumai.rss',
+                'http://rss.vikatan.com/feeds/sakthi.rss',
+                'http://rss.vikatan.com/feeds/technology_news.rss',
+                'http://rss.vikatan.com/feeds/ananda.rss',
+                'http://rss.vikatan.com/feeds/junior.rss',
+                'http://rss.vikatan.com/feeds/aval.rss',
+                'http://rss.vikatan.com/feeds/chutti.rss',
+                'http://rss.vikatan.com/feeds/motor.rss',
+                'http://rss.vikatan.com/feeds/doctor.rss',
+                'http://www.dinakaran.com/rss_news.asp?id=15',
+                'http://bengaluru.citizenmatters.in/feed',
+                'https://patrikai.com/feed/',
+		            'http://tamil.thehindu.com/india/rss/',
+                'http://feeds.dzone.com/webdev',
+                'https://news.google.com/news/rss/local?hl=en&gl=US&ned=us',
+                'http://createfeed.fivefilters.org/extract.php?url=www.vikatan.com%2Fpersonalfinance%2Findex.php&in_id_or_class=latest-news-list&url_contains=personalfinance',
+                'http://createfeed.fivefilters.org/extract.php?url=selfmotivationcoach.blogspot.com%2F&in_id_or_class=post-title&url_contains=',
+		            'http://createfeed.fivefilters.org/extract.php?url=www.gurugulam.com%2F&in_id_or_class=post-title&url_contains=',
+                'https://gurukulamas.blogspot.com//feeds/posts/default?alt=rss',
+		            'http://createfeed.fivefilters.org/extract.php?url=aanmikam.blogspot.in%2F&in_id_or_class=post-title&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=whatsappuseful.blogspot.in%2F&in_id_or_class=post-title&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=parisupottigal.blogspot.in%2F&in_id_or_class=post-title&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=pettagum.blogspot.in%2F&in_id_or_class=post-title&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=eankankal.blogspot.in%2F&in_id_or_class=post-title&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=sashiga.blogspot.in%2F&in_id_or_class=post-title&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=www.bbc.com%2Ftamil%2Findia&in_id_or_class=hard-news-unit&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=writerasai.blogspot.in%2F&in_id_or_class=post-title&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=https%3A%2F%2Ftamil.yourstory.com%2F&in_id_or_class=block&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=www.newspaper.tamilanbazaar.com%2F&in_id_or_class=post-box-title&url_contains=',
+		            'http://createfeed.fivefilters.org/extract.php?url=https%3A%2F%2Fdreamdth.com%2Fforums%2Fdd-free-dish.12%2F&in_id_or_class=js-threadList&url_contains=%2Fthreads',
+		            'http://createfeed.fivefilters.org/extract.php?url=https%3A%2F%2Fgroups.google.com%2Fforum%2Fm%2F%23%21forum%2Fmca_nmc&in_id_or_class=&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=https%3A%2F%2Fsenthilvayal.com%2F&in_id_or_class=entry-title&url_contains=',
+                'https://news.google.com/news/rss/headlines/section/topic/TECHNOLOGY?ned=us&hl=en&gl=US',
+                'http://createfeed.fivefilters.org/extract.php?url=https%3A%2F%2Fdzone.com%2Fweb-development-programming-tutorials-tools-news&in_id_or_class=&url_contains=%2Farticles%2F',
+                'http://createfeed.fivefilters.org/extract.php?url=https%3A%2F%2Fwww.dailythanthi.com%2FDistricts%2Fbangalore&in_id_or_class=ListingNewsWithMEDImage&url_contains=News%2FDistricts',
+                'http://createfeed.fivefilters.org/extract.php?url=www.dailythanthi.com%2FDistricts%2Fthirunelveli&in_id_or_class=b-r&url_contains=',
+                'http://createfeed.fivefilters.org/extract.php?url=www.maalaimalar.com%2FNews%2FDistrict%2Fthirunelveli&in_id_or_class=Listing&url_contains='
+				  ]
+       
+        function gethtml(){
+        newsHtml="<ul>"
+           for (URL in newsUrls) {
+            newsHtml+="<h4>"+newsUrls[URL]+"</h4>"
+            $.ajax({
+                url: newsUrls[URL],
+                dataType: "text",
+                global: false,
+                async: false, //blocks window close
+                success: function(data) {
+                     const myRe =/(\<title\>.*?\<\/title\>)/gm
+                     let matches = data.match(myRe);
+                     for (match in matches) {
+                        newsTitle=matches[match].replace("<title>", "").replace("</title>", "").replace("<![CDATA[","")
+                        newsHtml+="<li>"+newsTitle+"</li>"
+                        console.log(newsTitle )
+                    }
+          
+                }
+            });
+            
+        }
+           
+            newsHtml+="</ul><hr>"
+            return newsHtml
+        }
+        
+         news=gethtml()
+        $("#newslist").append(news)    
+            
+        </script>
+</body></html>
